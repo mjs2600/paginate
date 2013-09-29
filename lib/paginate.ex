@@ -9,7 +9,7 @@ defmodule Paginate do
 
   def paginate(records, options) do
     records_per_page = options[:records_per_page] || 50
-    page = options[:page] || 1
+    page = binary_to_integer(options[:page]) || 1
     records = Enum.drop records, ((page - 1) * records_per_page)
 
     Enum.take records, records_per_page
